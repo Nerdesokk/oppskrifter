@@ -27,5 +27,22 @@ jobs:
 
       - name: Perform a Pester test from the command-line
         shell: pwsh
-        run: get-childitem
-     
+        run: |
+          $badWord = dobbelklikk
+          $result = [System.Collections.Generic.List[psobject]]::New()
+          foreach ($file in Get-ChildItem | where Name -like "*.md")
+          {
+            $content = $file | get-content
+            $containsBadWord = $false
+            if($containsBadWord -or $content.Contains($badword))
+            {
+              $result.Add($file)
+            }
+          }
+          
+          if ($filesContainingBadKeyWord.Length -gt 0)
+          {
+            write-host "Files containing " + $badword
+            $filesContainingBadKeyWord.Name
+            return 1
+          }
