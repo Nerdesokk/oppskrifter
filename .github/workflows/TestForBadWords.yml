@@ -27,14 +27,13 @@ jobs:
         shell: pwsh
         run: |
           $badWord = "dobbelklikk"
-          $result = [System.Collections.Generic.List[psobject]]::New()
+          $filesContainingBadKeyWord = [System.Collections.Generic.List[psobject]]::New()
           foreach ($file in Get-ChildItem | where Name -like "*.md")
           {
             $content = $file | get-content
-            $containsBadWord = $false
-            if($containsBadWord -or $content.Contains($badword))
+            if(($content -match $badword).Length -ne 0)
             {
-              $result.Add($file)
+              $filesContainingBadKeyWord.Add($file)
             }
           }
           
@@ -42,5 +41,5 @@ jobs:
           {
             write-host "Files containing " + $badword
             $filesContainingBadKeyWord.Name
-            return 1
+            exit 1
           }
