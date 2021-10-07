@@ -42,5 +42,5 @@ jobs:
           {
             write-host "Files containing " + $badword
             $filesContainingBadKeyWord.Name
-            return 1
+            Exit 1
           }
