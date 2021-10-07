@@ -28,7 +28,7 @@ jobs:
       - name: Perform a Pester test from the command-line
         shell: pwsh
         run: |
-          $badWord = dobbelklikk
+          $badWord = "dobbelklikk"
           $result = [System.Collections.Generic.List[psobject]]::New()
           foreach ($file in Get-ChildItem | where Name -like "*.md")
           {
