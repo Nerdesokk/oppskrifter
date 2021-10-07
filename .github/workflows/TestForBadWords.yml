@@ -28,11 +28,10 @@ jobs:
         run: |
           $badWord = "dobbelklikk"
           $result = [System.Collections.Generic.List[psobject]]::New()
-          foreach ($file in (Get-ChildItem | where Name -like "*.md"))
+          foreach ($file in Get-ChildItem | where Name -like "*.md")
           {
             $content = $file | get-content
-            $containsBadWord = $false
-            if($containsBadWord -or $content.Contains($badword))
+            if(($content -match $badword).Length -ne 0)
             {
               $result.Add($file)
             }
@@ -44,4 +43,3 @@ jobs:
             $filesContainingBadKeyWord.Name
             exit 1
           }
-          write-host $filesContainingBadKeyWords.Length
