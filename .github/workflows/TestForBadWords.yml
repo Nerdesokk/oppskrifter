@@ -1,0 +1,46 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  test:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: Check for any hint of dobbelklikkers among us... 
+        shell: pwsh
+        run: |
+          $badWord = "dobbelklikk"
+          $result = [System.Collections.Generic.List[psobject]]::New()
+          foreach ($file in Get-ChildItem | where Name -like "*.md")
+          {
+            $content = $file | get-content
+            $containsBadWord = $false
+            if($containsBadWord -or $content.Contains($badword))
+            {
+              $result.Add($file)
+            }
+          }
+          
+          if ($filesContainingBadKeyWord.Length -gt 0)
+          {
+            write-host "Files containing " + $badword
+            $filesContainingBadKeyWord.Name
+            return 1
+          }
