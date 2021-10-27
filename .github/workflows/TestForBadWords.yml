@@ -26,6 +26,7 @@ jobs:
       - name: Check for any hint of dobbelklikkers among us... 
         shell: pwsh
         run: |
+          pwd
           $badWord = "dobbelklikk"
           $filesContainingBadKeyWord = [System.Collections.Generic.List[psobject]]::New()
           foreach ($file in Get-ChildItem | where Name -like "*.md")
