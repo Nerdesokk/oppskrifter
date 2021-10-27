@@ -25,5 +25,5 @@ jobs:
 
       - name: Check for any hint of dobbelklikkers among us... 
         shell: bash
-        run: docker run -it -v /home/runner/work:/inputfolder ghcr.io/olebru/chkshtlst:main
+        run: docker run -v /home/runner/work:/inputfolder ghcr.io/olebru/chkshtlst:main doubleclick dobbelklikk
 
