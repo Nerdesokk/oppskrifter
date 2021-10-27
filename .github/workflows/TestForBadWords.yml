@@ -24,22 +24,6 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Check for any hint of dobbelklikkers among us... 
-        shell: pwsh
-        run: |
-          $badWord = "dobbelklikk"
-          $filesContainingBadKeyWord = [System.Collections.Generic.List[psobject]]::New()
-          foreach ($file in Get-ChildItem | where Name -like "*.md")
-          {
-            $content = $file | get-content
-            if(($content -match $badword).Length -ne 0)
-            {
-              $filesContainingBadKeyWord.Add($file)
-            }
-          }
-          
-          if ($filesContainingBadKeyWord.Length -gt 0)
-          {
-            write-host "Files containing " + $badword
-            $filesContainingBadKeyWord.Name
-            exit 1
-          }
+        shell: bash
+        run: docker run -it -v /home/runner/work:/inputfolder ghcr.io/olebru/chkshtlst:main
+
