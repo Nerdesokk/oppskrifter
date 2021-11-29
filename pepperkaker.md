@@ -4,4 +4,4 @@
 * 8 eggeplommer  
 * 1 kg hvetemel  
 * 1 kg pepper  
-Dobbelklikk
+dobbelklikk
