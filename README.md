@@ -1,2 +1,2 @@
-# Den ultimate kokeboken for vestlandsnerder
+# Den ultimate kokeboken for vestlandsnerder!
 
